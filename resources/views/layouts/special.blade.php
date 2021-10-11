@@ -12,6 +12,8 @@
     <link href = "../css/libs/normalize.css" rel = "stylesheet" type = "text/css">
     <link href = "../css/style.min.css" rel = "stylesheet" type = "text/css">
     <link href="../css/wide-head-and-foot-style.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body class='auth-page-body'>
 <header>
