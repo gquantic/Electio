@@ -161,7 +161,7 @@
                     </li>
                     <li><a href="about-electio.html" class="header-menu__link about-service-btn">О сервисе</a></li>
                     <li class="hid-for-unlogin-header"><a href="#" class="header-menu__link">Мои объявления</a></li>
-                    <li class="hid-for-unlogin-header"><a href="lk.html" class="header-menu__link menu__link-pc">Личный кабинет</a></li>
+                    <li class="hid-for-unlogin-header"><a href="profile" class="header-menu__link menu__link-pc">Личный кабинет</a></li>
                     <li class="unlog-header-btn"><a href="reg-form.html" class="header-menu__link hidden-btn registration-btn">Регистрация</a></li>
                     <li class="unlog-header-btn"><a href="auth-form.html" class="header-menu__link hidden-btn authtariz-btn">Войти</a></li>
                 </ul>

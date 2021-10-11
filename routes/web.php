@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('catalog');
-});
+Route::get('/', [\App\Http\Controllers\ShopController::class, 'catalogView']);
 
 Route::get('/catalog/{category}', [\App\Http\Controllers\ShopController::class, 'categorySelect']);
 
-Route::get('/goods/{id}', [\App\Http\Controllers\GoodsController::class, 'exportGood']);
+Route::get('/goods/{id}', [\App\Http\Controllers\GoodsController::class, 'goodInfo']);
+
+Route::get('/profile/', [\App\Http\Controllers\GoodsController::class, 'goodInfo'])->middleware('auth');
+
+Route::get('/login', function () {
+    return view('login');
+})->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

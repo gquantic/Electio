@@ -49,20 +49,23 @@
                 </div>
             </div>
             <div class="catalog-items__wrapper">
-                <div class="catalog-wrapper__item" onclick="itemShowInfo(12);">
-                    <div class="ready-made-container__item"><img class='cat-card__img-bg'
-                                                                 src="../img/catalog-card-img.png" width="100%" alt="">
+                <!-- Start Items -->
+                @foreach($goods as $good)
+                <div class="catalog-wrapper__item" onclick="itemShowInfo({{ $good['id'] }});">
+                    <div class="ready-made-container__item">
+                        <img class='cat-card__img-bg' src="http://78.24.223.31:8080/{{ $good['mainPhoto'] }}" width="100%" alt="">
                         <input type="text" id="id" value="2222">
                         <div class="ready-made-item__text-block">
-                            <p class="ready-mate-text-block__title">Вечернее платье Роза</p>
-                            <p class="ready-mate-text-block__descr crowded-ellipsis--modify">Описание товара максимум в
-                                две строки с продолжением...</p>
-                            <div class="item__drop-cost"><a>2400₽ /сут</a><img src="../icons/drop-eye-icon.svg" alt="" class="item__drop-eye"></div>
+                            <p class="ready-mate-text-block__title">{{ $good['name'] }}</p>
+                            <p class="ready-mate-text-block__descr crowded-ellipsis--modify">{{ $good['describe'] }}</p>
+                            <div class="item__drop-cost"><a>{{ $good['tarifOne'] }}₽ /сут</a><img src="../icons/drop-eye-icon.svg" alt="" class="item__drop-eye"></div>
                         </div><img src="../icons/add-favorites-icon.svg" alt="" class="add-favorites-icon"
                                    id="favoritesico">
                         <div class="fav-heart-choose"><img class="change-on-choose-heart" src="../icons/lighting-heart-unchoose.svg" alt=""></div>
                     </div>
                 </div>
+                @endforeach
+                <!-- End items -->
             </div>
 
             <!-- PAGINATION -->
@@ -602,6 +605,9 @@
         function itemShowInfo(id) {
             console.log(id);
 
+            $('.modal-win__product-wrapper *').remove();
+            $('.modal-win__product-wrapper').append('<p class="text-center" style="color: #000;">Загрузка...<p>');
+
             $('.page__modal-filters').addClass('visible');
             $('.win-prod__bg-container').addClass('visible');
             $('.page__modal-filters').addClass('modify--blur');
@@ -611,29 +617,14 @@
 
             // Устанавливаем данные из API
             console.log("I will send request");
-            // $.get(
-            //     "/goods/" + id,
-            //     {},
-            //     function (data) {
-            //         data = JSON.parse(data);
-            //         console.log(data);
-            //     },
-            //     "json"
-            // );
-            $.ajax({
-                type: 'GET',
-                url: "/goods/" + id,
-                data: '',
-                success: function(data) {
-                    var insertedData = [];
-                    let meetup = JSON.parse(data, function(key, value) {
-                        insertedData.push(key, value);
-                    });
-                    console.log('data: ' + data);
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
+            $.get(
+                "/goods/" + id,
+                {},
+                function (data) {
+                    $('.modal-win__product-wrapper *').remove();
+                    $('.modal-win__product-wrapper').append(data);
+                }
+            );
         }
     </script>
 @endsection
